@@ -1,0 +1,44 @@
+server:
+  port: ${SERVER_PORT:8085}
+spring:
+  application:
+    name: ${APPLICATION_NAME:booking-service}
+  mail:
+     username: rameshchenchu69@gmail.com
+     password: fhng apcd xqzq mrpm
+     host: smtp.gmail.com
+     port: 587
+     properties:
+        mail:
+          smtp:
+            auth: false
+            connectiontimeout: 5000
+            timeout: 5000
+            writetimeout: 5000
+            starttls:
+              required: true
+              enable: true
+
+  kafka:
+    consumer:
+      bootstrap-servers:
+        - "localhost:19092"
+        - "localhost:29092"
+        - "localhost:39092"
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      auto-offset-reset: earliest
+
+
+eureka:
+  client:
+    register-with-eureka: ${REGISTER_WITH_EUREKA:true}
+    service-url:
+      defaultZone: ${DEFAULT_ZONE:http://localhost:8761/eureka/}
+
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
